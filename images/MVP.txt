@@ -1,0 +1,22 @@
+Sprint 5
+Implementação Firebase
+Cadastro de usuário
+Autenticação de usuário
+Cadastro dos Eventos
+
+Sprint 6
+Activity Lista de Eventos
+Activity Artistas
+Activity Vendedores
+
+Sprint 7
+Activity Mapa
+Activity Torneios
+Activity Q&A
+
+
+
+
+
+
+ 

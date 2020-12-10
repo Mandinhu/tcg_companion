@@ -1,0 +1,56 @@
+ Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+    return ListView(
+      padding: const EdgeInsets.only(top: 20.0),
+      children: snapshot.map((data) => _buildListItem(context, data)).toList(),
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
+    final record = Record.fromSnapshot(data);
+
+    return Padding(
+      key: ValueKey(record.nome),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        child: ListTile(
+          title: Text('Nome: ${record.nome}'),
+          trailing: Text('Jogadores Min e Max: ${record.min} - ${record.max}'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => new Board(board: new Boards("${record.nome}","${record.max}", "${record.min}","${record.url}", "${record.reference}")))
+            );
+          }
+        ),
+      )
+    );
+  }
+}
+
+class Record {
+  final String nome;
+  final String min;
+  final String max;
+  final String url;
+  final DocumentReference reference;
+
+  Record.fromMap(Map<String, dynamic> map, {this.reference})
+      : assert(map['nome'] != null),
+        assert(map['min'] != null),
+        assert(map['max'] != null),
+        assert(map['url'] != null),
+        nome = map['nome'],
+        min = map['min'],
+        max = map['max'],
+        url = map['url'];
+
+  Record.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
+
+  @override
+  String toString() => "Record<$nome:$min:$max:$url>";
+}
