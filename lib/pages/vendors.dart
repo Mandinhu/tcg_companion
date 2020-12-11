@@ -15,7 +15,7 @@ class Vendors extends StatelessWidget {
       ),
       drawer: tcg_Drawer(),
       body: _body(context),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey,
     );
   }
 
@@ -35,7 +35,7 @@ class Vendors extends StatelessWidget {
                 default:
                   List<DocumentSnapshot> vendors = snapshot.data.documents;
                   return ListView.builder(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 050),
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
                       itemCount: vendors.length,
                       itemBuilder: (context, index) {
                         return Column(
@@ -45,7 +45,7 @@ class Vendors extends StatelessWidget {
                                 children: <Widget>[
                                   new Image.network(
                                     vendors[index].data["logo"],
-                                    height: 200,
+                                    height: 150,
                                     width: 200,
                                   ),
                                 ]
@@ -57,6 +57,15 @@ class Vendors extends StatelessWidget {
               }
             },
           ),
+        ),
+        new RaisedButton(
+            child: new Text("Voltar"),
+            textColor: Colors.white,
+            color: Colors.blueGrey,
+            onPressed: () {
+              // Navigate back to first screen when tapped!
+              Navigator.pop(context);
+            }
         ),
       ],
     );

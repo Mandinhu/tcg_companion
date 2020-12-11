@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tcg_companion/pages/artists.dart';
+import 'package:tcg_companion/pages/map.dart';
 import 'package:tcg_companion/pages/tournaments.dart';
 import 'package:tcg_companion/pages/vendors.dart';
 
@@ -37,6 +38,7 @@ class EventPage extends StatelessWidget {
           ),
           _buttons1(context),
           _buttons2(context),
+          _qna()
         ],
       )
     );
@@ -73,7 +75,10 @@ class EventPage extends StatelessWidget {
             textColor: Colors.white,
             color: Colors.blueGrey,
             onPressed: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Map()),
+              );
             }
         ),
     ]
@@ -102,7 +107,28 @@ class EventPage extends StatelessWidget {
                 // Navigate back to first screen when tapped!
                 Navigator.pop(context);
               }
-          )
+          ),
+        ]
+    );
+  }
+  _qna() {
+    return Column(
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          new Text(
+            "Perguntas mais Frequentes!\n\n"
+            "Horário de Abertura e Fechamento:\n"
+            "09:00h - 19:00h\n\n"
+            "Dias do Evento:\n"
+            "${event["date"]}\n\n",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+            ),
+          ),
         ]
     );
   }

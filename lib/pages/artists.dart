@@ -41,20 +41,27 @@ class Artists extends StatelessWidget {
                       return Column(
                         children: <Widget>[
                           Text(
-                            artists[index].data["name"],
+                      "${artists[index].data["name"]}" ,
                             style: TextStyle(
                               color: Colors.red,
-                              fontSize: 35,
+                              fontSize: 30,
                             ),
                           ),
-                          Image.network(artists[index].data["photo"]),
+                          Image.network(
+                            artists[index].data["photo"],
+                            height: 120,
+                            width: 200,
+                          ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               new Image.network(
                                 artists[index].data["exemple1"],
                                 height: 200,
-                                width: 200,
+                                width: 190,
+                              ),
+                              SizedBox(
+                                width: 10,
                               ),
                               new Image.network(
                                 artists[index].data["exemple2"],
@@ -70,6 +77,15 @@ class Artists extends StatelessWidget {
               }
             },
           ),
+        ),
+        new RaisedButton(
+            child: new Text("Voltar"),
+            textColor: Colors.white,
+            color: Colors.blueGrey,
+            onPressed: () {
+              // Navigate back to first screen when tapped!
+              Navigator.pop(context);
+            }
         ),
       ],
     );
